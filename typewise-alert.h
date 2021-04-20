@@ -7,11 +7,27 @@
 
 #pragma once
 
+#define COOLTYPE_INDEX 3U
+
+typedef struct {
+	int lowerLimit;
+	int upperLimit;
+}BattCoolTypeLimit_s ;
+
 typedef enum {
   PASSIVE_COOLING,
   HI_ACTIVE_COOLING,
   MED_ACTIVE_COOLING
 } CoolingType;
+
+typedef enum {
+LOW_LIMIT_1 =0,
+HIGH_LIMIT_1 =35,
+LOW_LIMIT_2 =0,
+HIGH_LIMIT_2 = 45,
+LOW_LIMIT_3 = 0,
+HIGH_LIMIT_3 = 40,
+}CoolTypeLimit;
 
 typedef enum {
   NORMAL,
@@ -21,6 +37,8 @@ typedef enum {
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
+
+
 
 typedef enum {
   TO_CONTROLLER,
