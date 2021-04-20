@@ -8,6 +8,7 @@
 #pragma once
 
 #define COOLTYPE_INDEX 3U
+#define ALERTTYPE_INDEX 2U
 
 typedef struct {
 	int lowerLimit;
