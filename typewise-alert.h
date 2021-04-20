@@ -1,3 +1,10 @@
+/*****************************************************************************/
+/***    \file        typewise-alert.h
+***     \author      Naveen Balachandar (RBEI/ECK3) 
+***
+***     \brief       File to monitor the battery condition based required properties
+/*****************************************************************************/
+
 #pragma once
 
 typedef enum {
@@ -30,3 +37,4 @@ void checkAndAlert(
 
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
+void sendToConsole(BreachType breachType);
