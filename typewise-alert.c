@@ -1,3 +1,9 @@
+/*****************************************************************************/
+/***    \file        typewise-alert.c
+***     \author      Naveen Balachandar (RBEI/ECK3) 
+***
+***     \brief       File to monitor the battery condition based required properties
+/*****************************************************************************/
 #include "typewise-alert.h"
 #include <stdio.h>
 
