@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 BattCoolTypeLimit_s BattCoolTypeLimit[COOLTYPE_INDEX] = {{LOW_LIMIT_1,HIGH_LIMIT_1},{LOW_LIMIT_2,HIGH_LIMIT_2},{LOW_LIMIT_3,HIGH_LIMIT_3}};
+alertTargetNode_s alertTargetNode[ALERTTYPE_INDEX] = {sendToController,sendToEmail};
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -28,8 +29,7 @@ void checkAndAlert(
     AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
 
   BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
-
-
+   alertTargetNode[alertTarget].alertTargetType(breachType);
 }
 
 void sendToController(BreachType breachType) {
