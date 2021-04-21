@@ -9,6 +9,7 @@
 
 #define COOLTYPE_INDEX 3U
 #define ALERTTYPE_INDEX 2U
+#define CHARGELEVEL_INDEX 3U
 
 typedef struct {
 	int lowerLimit;
@@ -54,6 +55,11 @@ typedef struct {
 typedef struct{
 	void (*alertTargetType)(BreachType breachType);
 }alertTargetNode_s;
+
+typedef struct 
+{
+   void (*SendChargeLevel)();
+}sendChargeLevel_Mail_s ;
 
 void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
