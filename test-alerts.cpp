@@ -16,20 +16,20 @@ TEST_CASE("Passive Cooling system with Normal temp and O/P fed to controller") {
 	REQUIRE(AlertStatRest.breachType == NORMAL);
 }
 
-TEST_CASE("Passive Cooling  with Normal and O/P fed to controller") {
+TEST_CASE("Passive Cooling  with Normal lower boundary and O/P fed to controller") {
 	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
 	BatteryCharacter batteryCharacter = {PASSIVE_COOLING,"TCQ_Tests"};
-	/*boundary validation*/
+	
 	AlertStatRest = checkAndAlert(TO_CONTROLLER, batteryCharacter, 0);
 	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_CONTROLLER);
 	REQUIRE(AlertStatRest.breachType == NORMAL);
 }
 
-TEST_CASE("Passive Cooling  with Normal and O/P fed to controller") {
+TEST_CASE("Passive Cooling  with Normal upper boundary and O/P fed to controller") {
 	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
 	BatteryCharacter batteryCharacter = {PASSIVE_COOLING,"TCQ_Tests"};
 	
-	/*boundary validation*/
+	
 	AlertStatRest = checkAndAlert(TO_CONTROLLER, batteryCharacter, 35);
 	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_CONTROLLER);
 	REQUIRE(AlertStatRest.breachType == NORMAL);
@@ -53,7 +53,7 @@ TEST_CASE("Passive Cooling  with high temp and O/P fed to controller") {
 	REQUIRE(AlertStatRest.breachType == TOO_HIGH);
 }
 
-TEST_CASE("Passive Cooling  with high temp and O/P fed to controller") {
+TEST_CASE("Passive Cooling  with high temp boundary validation and O/P fed to controller") {
 	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
 	BatteryCharacter batteryCharacter = {PASSIVE_COOLING,"TCQ_Tests"};
 	
