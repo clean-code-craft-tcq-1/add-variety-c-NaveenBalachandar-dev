@@ -66,3 +66,7 @@ void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
 void sendToConsole(BreachType breachType);
+
+void charge_TooLow(void);
+void charge_TooHigh(void);
+void charge_Normal(void);
