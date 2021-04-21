@@ -41,4 +41,22 @@ void sendToController(BreachType breachType) {
 void sendToEmail(BreachType breachType) {
    SendChargeLevel_Mail[breachType].SendChargeLevel();
   }
+
+void charge_TooLow(void)
+{
+	const char* recepient = "a.b@c.com";
+	printf("To: %s\n", recepient);
+    printf("Hi, the temperature is too low\n");
+}
+
+void charge_TooHigh(void)
+{
+	const char* recepient = "a.b@c.com";
+	printf("To: %s\n", recepient);
+    printf("Hi, the temperature is too high\n");
+}
+
+void charge_Normal(void)
+{
+	/*No action required*/
 }
