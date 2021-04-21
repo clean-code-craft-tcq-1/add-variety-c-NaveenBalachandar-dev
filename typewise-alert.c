@@ -10,6 +10,7 @@
 BattCoolTypeLimit_s BattCoolTypeLimit[COOLTYPE_INDEX] = {{LOW_LIMIT_1,HIGH_LIMIT_1},{LOW_LIMIT_2,HIGH_LIMIT_2},{LOW_LIMIT_3,HIGH_LIMIT_3}};
 alertTargetNode_s alertTargetNode[ALERTTYPE_INDEX] = {sendToController,sendToEmail};
 sendChargeLevel_Mail_s SendChargeLevel_Mail[CHARGELEVEL_INDEX] = {charge_Normal,charge_TooLow,charge_TooHigh};
+Alert_Status_s AlertStat = {NO_PRINT_DONE,DEFAULT_BREACH};
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -26,11 +27,12 @@ BreachType classifyTemperatureBreach(CoolingType coolingType, double temperature
   return inferBreach(temperatureInC, BattCoolTypeLimit[coolingType].lowerLimit, BattCoolTypeLimit[coolingType].upperLimit);
 }
 
-void checkAndAlert(
-    AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
+Alert_Status_s checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
 
   BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
-   alertTargetNode[alertTarget].alertTargetType(breachType);
+  alertTargetNode[alertTarget].alertTargetType(breachType);
+  AlertStat.breachType = breachType;
+  return AlertStat;
 }
 
 void sendToController(BreachType breachType) {
