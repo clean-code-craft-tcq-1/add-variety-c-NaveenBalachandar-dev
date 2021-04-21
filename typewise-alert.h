@@ -47,6 +47,12 @@ typedef enum {
   TO_EMAIL
 } AlertTarget;
 
+typedef enum {
+ SENT_TO_CONTROLLER,
+ SENT_TO_EMAIL,
+ NOT_SENT
+}AlertSentStatus_t;
+
 typedef struct {
   CoolingType coolingType;
   char brand[48];
