@@ -8,9 +8,10 @@ TEST_CASE("infers the breach according to limits") {
 }
 
 TEST_CASE("Passive Cooling system with Normal temp and O/P fed to controller") {
-	
+	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
 	BatteryCharacter batteryCharacter = {PASSIVE_COOLING,"TCQ_Tests"};
 	
 	checkAndAlert(TO_CONTROLLER, batteryCharacter, 30);
-	
+	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_CONTROLLER);
+	REQUIRE(AlertStatRest.breachType == NORMAL);
 }
