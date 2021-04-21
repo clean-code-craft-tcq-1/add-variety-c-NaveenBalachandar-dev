@@ -38,10 +38,12 @@ Alert_Status_s checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryCh
 void sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
   printf("%x : %x\n", header, breachType);
+  AlertStat.AlertSentStatus = SENT_TO_CONTROLLER;
 }
 
 void sendToEmail(BreachType breachType) {
    SendChargeLevel_Mail[breachType].SendChargeLevel();
+   AlertStat.AlertSentStatus = SENT_TO_EMAIL;
   }
 
 void charge_TooLow(void)
