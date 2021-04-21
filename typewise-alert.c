@@ -10,7 +10,7 @@
 BattCoolTypeLimit_s BattCoolTypeLimit[COOLTYPE_INDEX] = {{LOW_LIMIT_1,HIGH_LIMIT_1},{LOW_LIMIT_2,HIGH_LIMIT_2},{LOW_LIMIT_3,HIGH_LIMIT_3}};
 alertTargetNode_s alertTargetNode[ALERTTYPE_INDEX] = {sendToController,sendToEmail};
 sendChargeLevel_Mail_s SendChargeLevel_Mail[CHARGELEVEL_INDEX] = {charge_Normal,charge_TooLow,charge_TooHigh};
-Alert_Status_s AlertStat = {NO_PRINT_DONE,DEFAULT_BREACH};
+Alert_Status_s AlertStat = {NOT_SENT,NORMAL};
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
