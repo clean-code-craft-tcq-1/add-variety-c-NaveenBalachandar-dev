@@ -9,6 +9,7 @@
 
 BattCoolTypeLimit_s BattCoolTypeLimit[COOLTYPE_INDEX] = {{LOW_LIMIT_1,HIGH_LIMIT_1},{LOW_LIMIT_2,HIGH_LIMIT_2},{LOW_LIMIT_3,HIGH_LIMIT_3}};
 alertTargetNode_s alertTargetNode[ALERTTYPE_INDEX] = {sendToController,sendToEmail};
+sendChargeLevel_Mail_s SendChargeLevel_Mail[CHARGELEVEL_INDEX] = {charge_Normal,charge_TooLow,charge_TooHigh};
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -38,17 +39,6 @@ void sendToController(BreachType breachType) {
 }
 
 void sendToEmail(BreachType breachType) {
-  const char* recepient = "a.b@c.com";
-  switch(breachType) {
-    case TOO_LOW:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too low\n");
-      break;
-    case TOO_HIGH:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too high\n");
-      break;
-    case NORMAL:
-      break;
+   SendChargeLevel_Mail[breachType].SendChargeLevel();
   }
 }
