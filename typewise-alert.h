@@ -61,7 +61,12 @@ typedef struct
    void (*SendChargeLevel)();
 }sendChargeLevel_Mail_s ;
 
-void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
+typedef struct {
+		AlertSentStatus_t AlertSentStatus;
+		BreachType breachType;
+}Alert_Status_s;
+
+Alert_Status_s checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
