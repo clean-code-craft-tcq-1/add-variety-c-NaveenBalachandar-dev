@@ -7,6 +7,62 @@ TEST_CASE("infers the breach according to limits") {
   REQUIRE(inferBreach(12, 20, 30) == TOO_LOW);
 }
 
+TEST_CASE("Active Cooling system with Normal temp and O/P fed to controller") {
+	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
+	BatteryCharacter batteryCharacter = {HI_ACTIVE_COOLING,"TCQ_Tests"};
+	
+	AlertStatRest = checkAndAlert(TO_EMAIL, batteryCharacter, 35);
+	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_EMAIL);
+	REQUIRE(AlertStatRest.breachType == NORMAL);
+}
+
+TEST_CASE("Active Cooling  with Normal lower boundary and O/P fed to controller") {
+	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
+	BatteryCharacter batteryCharacter = {HI_ACTIVE_COOLING,"TCQ_Tests"};
+	
+	AlertStatRest = checkAndAlert(TO_EMAIL, batteryCharacter, 0);
+	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_EMAIL);
+	REQUIRE(AlertStatRest.breachType == NORMAL);
+}
+
+TEST_CASE("Active Cooling  with Normal upper boundary and O/P fed to controller") {
+	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
+	BatteryCharacter batteryCharacter = {HI_ACTIVE_COOLING,"TCQ_Tests"};
+	
+	
+	AlertStatRest = checkAndAlert(TO_EMAIL, batteryCharacter, 45);
+	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_EMAIL);
+	REQUIRE(AlertStatRest.breachType == NORMAL);
+}
+
+TEST_CASE("Active Cooling  with low temp and O/P fed to controller") {
+	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
+	BatteryCharacter batteryCharacter = {HI_ACTIVE_COOLING,"TCQ_Tests"};
+	
+	AlertStatRest = checkAndAlert(TO_EMAIL, batteryCharacter, -20);
+	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_EMAIL);
+	REQUIRE(AlertStatRest.breachType == TOO_LOW);
+}
+
+TEST_CASE("Active Cooling  with high temp and O/P fed to controller") {
+	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
+	BatteryCharacter batteryCharacter = {HI_ACTIVE_COOLING,"TCQ_Tests"};
+	
+	AlertStatRest = checkAndAlert(TO_EMAIL, batteryCharacter, 60);
+	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_EMAIL);
+	REQUIRE(AlertStatRest.breachType == TOO_HIGH);
+}
+
+TEST_CASE("Active Cooling  with high temp boundary validation and O/P fed to controller") {
+	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
+	BatteryCharacter batteryCharacter = {HI_ACTIVE_COOLING,"TCQ_Tests"};
+	
+	AlertStatRest = checkAndAlert(TO_EMAIL, batteryCharacter, 46);
+	REQUIRE(AlertStatRest.AlertSentStatus  == SENT_TO_EMAIL);
+	REQUIRE(AlertStatRest.breachType == TOO_HIGH);
+}
+
+
 TEST_CASE("Passive Cooling system with Normal temp and O/P fed to controller") {
 	Alert_Status_s AlertStatRest = {NOT_SENT,NORMAL};
 	BatteryCharacter batteryCharacter = {PASSIVE_COOLING,"TCQ_Tests"};
